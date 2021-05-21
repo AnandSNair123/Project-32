@@ -47,13 +47,7 @@ async function getBackgroundImg(){
     var datetime = responseJSON.datetime;
     var hour = datetime.slice(11,13);
     
-    if(hour>=06 && hour<=19){
-        bg = "sunrise1.png";
-    }
-    else{
-        bg = "sunset12.png";
-    }
-    timings = datetime.slice(11,16);
+    timings = datetime.slice(11,13);
     console.log(hour);
     if( timings > 12){
         timings = timings-12;
@@ -63,6 +57,12 @@ async function getBackgroundImg(){
     }
     if(hour>12){
         times = "PM";
+    }
+    if(times === "AM"){
+        bg = "sunrise1.png";
+    }
+    if(times === "PM"){
+        bg = "sunset12.png";
     }
 
     backgroundImg = loadImage(bg);
